@@ -1,30 +1,16 @@
-name: Deploy Flask App
-
-on:
-  push:
-    branches:
-      - main
-
-jobs:
-  deploy:
-    runs-on: ubuntu-latest
-
-    steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
-
-      - name: Deploy to EC2
-        uses: appleboy/ssh-action@v1.0.3
-        with:
-          host: ${{ secrets.EC2_HOST }}
-          username: ${{ secrets.EC2_USER }}
-          key: ${{ secrets.EC2_SSH_KEY }}
-          script: |
-            cd ${{ secrets.EC2_PATH }} || exit 1
-            rm -rf flask-app
-            git clone https://github.com/Sharath1863/flask-app.git flask-app
-            cd flask-app
-            docker build -t flask-devops .
-            docker stop flask-app || true
-            docker rm flask-app || true
-            docker run -d -p 80:5000 --name flask-app flask-devops
+- name: Deploy to EC2
+  uses: appleboy/ssh-action@v1.0.3
+  with:
+    host: ${{ secrets.EC2_HOST }}
+    username: ${{ secrets.EC2_USER }}
+    key: ${{ secrets.EC2_SSH_KEY }}
+    port: 22
+    script: |
+      cd ${{ secrets.EC2_PATH }} || exit 1
+      rm -rf flask-app
+      git clone https://github.com/Sharath1863/flask-app.git flask-app
+      cd flask-app
+      docker build -t flask-devops .
+      docker stop flask-app || true
+      docker rm flask-app || true
+      docker run -d -p 80:5000 --name flask-app flask-devops
