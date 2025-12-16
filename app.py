@@ -7,7 +7,7 @@ app = Flask(__name__)
 @app.route("/")
 def home():
 
-    return "this is aws ci cd and devops ci cd "
+     return "LIVE TEST: deployed from DEV via PR 🚀"
 
 
 
