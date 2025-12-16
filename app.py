@@ -7,7 +7,7 @@ app = Flask(__name__)
 @app.route("/")
 def home():
 
-     return "LIVE TEST: deployed from DEV via PR 🚀"
+     return "LIVE TEST: developed from DEV via PR 🚀"
 
 
 
