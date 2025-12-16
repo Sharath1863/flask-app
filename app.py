@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return "this is aws "
+    return "this is aws ci cd "
 
 
 
