@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return "Hello from CI/CD 🚀 - Deployed via GitHub Actions"
+    return "Hello from MAIN branch"
 
 @app.route("/health")
 def health():
