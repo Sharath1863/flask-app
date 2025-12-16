@@ -6,7 +6,8 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-    return "Hello from DEV branch"
+   return "Hello from DEV v2"
+
 
 
 @app.route("/health")
